@@ -1,16 +1,5 @@
-<button (click)="load()">Send</button>
-<div *ngIf="loading">Loading</div>
-<div *ngIf="!loading">Done</div>
-<div *ngFor="let d of res">
-  <div>{{ d.name }}</div>
+<div class="p-6">
+  <login />
 </div>
-<input type="number" [(ngModel)]="m" />
-
-@if (m > 0) {
-<div>GT0</div>
-} @else {
-
-<div>LT0</div>
-}
 
 <router-outlet />
