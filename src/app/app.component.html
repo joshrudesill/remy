@@ -1,5 +1,12 @@
 <div class="p-6">
   <login />
-</div>
+  @if (user | async; as user) {
 
-<router-outlet />
+  <div>{{ user.name }} n</div>
+  } @else {
+  <div>loading</div>
+  }
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

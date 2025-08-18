@@ -1,23 +1,15 @@
-@if (auth.isAuthenticated$ | async) {
-<button
-  class="border-1 p-1 rounded-sm"
-  (click)="
-    auth.logout({ logoutParams: { returnTo: document.location.origin } })
-  "
->
+@if (isAuthenticated | async) {
+<button class="border-1 p-1 rounded-sm" (click)="handleLogout()">
   Log out
 </button>
+<router-outlet />
 } @else {
-<button class="border-1 p-1 rounded-sm" (click)="auth.loginWithRedirect()">
-  Log in
-</button>
+<button class="border-1 p-1 rounded-sm" (click)="handleLogin()">Log in</button>
 
-} @if (auth.user$ | async; as user) {
+} @if (user | async; as user) {
 <div class="flex gap-2 mt-2">
   <img ngSrc="{{ user.picture }}" alt="" width="40" height="40" />
   <div>{{ user.email }}</div>
 </div>
 
 }
-
-<router-outlet />

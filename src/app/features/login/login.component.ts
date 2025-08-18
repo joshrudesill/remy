@@ -10,8 +10,24 @@ import { AuthService } from '@auth0/auth0-angular';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  constructor(
-    @Inject(DOCUMENT) public document: Document,
-    public auth: AuthService
-  ) {}
+  private auth = inject(AuthService);
+  private document = inject(DOCUMENT);
+
+  user = this.auth.user$;
+  isAuthenticated = this.auth.isAuthenticated$;
+
+  handleLogin(): void {
+    this.auth.loginWithRedirect({
+      appState: {
+        target: '/profile',
+      },
+    });
+  }
+  handleLogout(): void {
+    this.auth.logout({
+      logoutParams: {
+        returnTo: this.document.location.origin,
+      },
+    });
+  }
 }
