@@ -10,8 +10,10 @@ export class Service {
 
   constructor(private http: HttpClient) {}
 
-  get() {
+  get(t: String) {
     console.log('getting');
-    return this.http.get(`${environment.api.serverUrl}/api/messages/admin`);
+    return this.http.get(
+      `${environment.api.serverUrl}/api/messages/protected?t=${t}`
+    );
   }
 }
